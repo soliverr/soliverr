@@ -1,0 +1,10 @@
+
+*.aux
+
+*.log
+
+*.out
+
+*.gz
+
+my_cv_ru.pdf
