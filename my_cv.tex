@@ -1,7 +1,7 @@
 % 
 % Резюме на основе стиля moderncv
 %
-% http://www.ctan.org/pkg/moderncv
+
 
 
 \documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
@@ -17,11 +17,11 @@
 
 
 % Резюме по-русски
-\usepackage[english, russian]{babel}
-% Резюме по-ангийски
-%\usepackage[russian, english]{babel}
+%\usepackage[english, russian]{babel}
+% Резюме по-английски
+\usepackage[russian, english]{babel}
 
-\usepackage[T2A]{fontenc}
+%\usepackage[T2A]{fontenc}
 
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
@@ -162,12 +162,8 @@
 
 
 
-%
-% 
-%
 % personal data
 \name{\myname}{\mysurname}
-%
 
 \iflanguage{russian}
 {\title{ИТ Архитектура и Программирование}}
@@ -178,19 +174,16 @@
 \address{\cityperm}{\country}
 %
 % the optional "type" of the phone can be "mobile" (default), "fixed" or "fax"
-%\phone[mobile]{+7~919~490~51~60}
 \phone[mobile]{+7~922~324~10~10}
-%\phone[fixed]{+2~(345)~678~901}
-%\phone[fax]{+3~(456)~789~012}
-\email{soliverr@gmail.com}                               % optional, remove / comment the line if not wanted
-%\homepage{www.johndoe.com}                         % optional, remove / comment the line if not wanted
-\social[linkedin]{sergey-kryazhevskikh-8128b2108}                        % optional, remove / comment the line if not wanted
-%\social[twitter]{jdoe}                             % optional, remove / comment the line if not wanted
-\social[github]{soliverr}                              % optional, remove / comment the line if not wanted
-%\social[skype]{soliver_in_skype}
-%\extrainfo{Skype soliver_in_skype}                 % optional, remove / comment the line if not wanted
-% FIXME: добавить контакт skype: soliver_in_skype
-\photo[64pt][0.4pt]{photo.jpeg}                       % optional, remove / comment the line if not wanted; '64pt' is the height the picture must be resized to, 0.4pt is the thickness of the frame around it (put it to 0pt for no frame) and 'picture' is the name of the picture file
+%%\phone[fixed]{+2~(345)~678~901}
+%%\phone[fax]{+3~(456)~789~012}
+\email{soliverr@gmail.com}
+%%\homepage{www.johndoe.com}
+\social[linkedin]{sergey-kryazhevskikh-8128b2108}
+%%\social[twitter]{jdoe}
+\social[github]{soliverr}
+\social[gitlab]{soliverr}
+\photo[64pt][0.4pt]{photo.jpeg}
 \iflanguage{russian}
 {\quote{Тимлид. ИТ Архитектор. Системный и прикладной программист. Инженер-исследователь. Инженер-схемотехник. Инженер DevOps. Системный администратор. Разработчик и администратор баз данных. Инженер данных}}
 {\quote{Team Leader. IT Architector. Software Developer. Research Engeener. Circuit Engineer. DevOps and System Engineer. System Adminstrator. DataBase Administrator/Developer. Data Engineer}}
@@ -207,7 +200,6 @@
 
 \iflanguage{russian}{\section{Образование}}{\section{Education}}
 
-%\cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 can be left empty
 \iflanguage{russian}
 {\cventry{1995--1998}{Инженер-исследователь}{{\protect\httplink[Вятский Государственный Университет]{www.vyatsu.ru}}}{Киров}{\textit{Высшее специальное}}{Окончил аспирантуру по специальности "Системы автоматического управления"}}
 {\cventry{1995--1998}{Research Engineer}{{\protect\httplink[Vyatka State University]{www.vyatsu.ru}}}{Kirov}{\textit{Higher professional}}{Postgraduated study in "Automatic control systems"}}
@@ -236,36 +228,39 @@
 %
 % Шаблон для заполнения
 %
+% \cventry{year--year}{Degree}{Institution}{City}{\textit{Grade}}{Description}  % arguments 3 to 6 can be left empty
+%
 %\cventry{2017--2018}{\seniorcondeveloper}
 %{\protect\httplink[\ibs]{ibs.ru}}
 %{\citymoscow, \country}
 %{}
 %{\iflanguage{russian}
-%	{}{}\newline{}
+%	{Краткое описание не более 1--2 строк}{General description no longer than 1--2 lines.}\newline{}
 %	\achievements:
 %	\begin{itemize}
-%		\item \iflanguage{russian}{ИТ Архитектура}{}
+%		\item \iflanguage{russian}{ИТ Архитектура}{IT Architecture}
 %		\begin{itemize}
-%			\item \iflanguage{russian}{}{}
-%			\item \iflanguage{russian}{}{}
+%			\item \iflanguage{russian}{Один}{One}
+%			\item \iflanguage{russian}{Два}{Two}
 %		\end{itemize}
-%		\item \iflanguage{russian}{Разработка программного обеспечения}{}
+%		\item \iflanguage{russian}{Разработка программного обеспечения}{Software development}
 %		\begin{itemize}
-%			\item \iflanguage{russian}{}{}
-%			\item \iflanguage{russian}{}{}
+%			\item \iflanguage{russian}{Один}{One}
+%			\item \iflanguage{russian}{Два}{Two}
 %		\end{itemize}
 %		\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
 %		\begin{itemize}
-%			\item \iflanguage{russian}{}{}
-%			\item \iflanguage{russian}{}{}
+%			\item \iflanguage{russian}{Один}{One}
+%      \item \iflanguage{russian}{Два}{Two}
 %		\end{itemize}
 %		\item \iflanguage{russian}{DevOps и системное администрирование}{DevOps and System administration}
 %		\begin{itemize}
-%			\item \iflanguage{russian}{}{}
-%			\item \iflanguage{russian}{}{}
+%			\item \iflanguage{russian}{Один}{One}
+%			\item \iflanguage{russian}{Два}{Two}
 %		\end{itemize}
 %	\end{itemize}
 %}
+%
 
 
 %
@@ -274,80 +269,80 @@
 \iflanguage{russian}{\subsection{Актуальные навыки}}{\subsection{Actual valid skills}}
 
 
-\cventry{2018--current}{\chiefsoftdeveloper}
+\cventry{2018--2020}{\chiefsoftdeveloper}
 {\protect\httplink[\simpl]{simpl-group.ru}}
 {\cityspb, \country}
 {}
 {\iflanguage{russian}
 	{Управление процессом разработки, разработка архитектуры, разработка прикладного программного обеспечения, внедрение программно-аппаратного комплекса разработанного решения для проекта в нефтегазовой отрасли РФ.}
-	{}
+	{WriteMe}
 	\newline{}
 	\achievements:
 	\begin{itemize}
 		\item \iflanguage{russian}{Тимлид}{Team Leader}
 		\begin{itemize}
-			\item \iflanguage{russian}{Управление и организация работы команды разработчиков: 5-12 человек}{}
-			\item \iflanguage{russian}{Выбор системы ведения проекта: Jira, Trello, Asana, Ora.pm, Redmine}{}
-			\item \iflanguage{russian}{Внедрение Scrumban в управление проектом: Ora.pm}{}
-			\item \iflanguage{russian}{Внедрение Scrum Poker в планирование спринтов}{}
+			\item \iflanguage{russian}{Управление и организация работы команды разработчиков: 5-12 человек}{WriteMe}
+			\item \iflanguage{russian}{Выбор системы ведения проекта: Jira, Trello, Asana, Ora.pm, Redmine}{WriteMe}
+			\item \iflanguage{russian}{Внедрение Scrumban в управление проектом: Ora.pm}{WriteMe}
+			\item \iflanguage{russian}{Внедрение Scrum Poker в планирование спринтов}{WriteMe}
 			\item \iflanguage{russian}
-				{Поддержание духа startup (the secret sauce) в команде разработчиков}
-				{}
+				{Поддержание духа startup в команде разработчиков}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Внедрение системы планирования спринтов на основе общей оценки скорости работы команды и индивидуальной скорости работы разработчика. Индекс активности разработчика. Автоматизация планирования с использованием MSProject, GanttProject, TaskJuggler}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Внедрение методологии управления релизами, организация выходного тестирования поставляемых заказчику решений в среде UAT}
-				{}
+				{WriteMe}
 		\end{itemize}
-		\item \iflanguage{russian}{ИТ Архитектура}{}
+		\item \iflanguage{russian}{ИТ Архитектура}{WriteMe}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Разработана архитектура вычислительного кластера на базе стека технологий BigData: Hadoop HDFS/YARN, ZooKeeper, Spark, Hive, Kyuubi Thrift JDBS/ODBC Server, Alluxio}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Проработка целевой архитектуры распределённой вычислительной системы с использованием различных стеков технологий}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Проработка архитектуры прикладного программного обеспечения и взаимодействия компонент разрабатываемого решения}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Участие в технических совещаниях с заказчиком, участие в защите решения у заказчика, написание технической документации}
-				{}
+				{WriteMe}
 		\end{itemize}
-		\item \iflanguage{russian}{Разработка программного обеспечения}{}
+		\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Ведение задач в Ora.pm. Миграция системы планирования из Jira}
 				{Planning in Jira, modev to Ora.pm}
 			\item \iflanguage{russian}
 				{Разработка моделей данных и PL/SQL кода для интеграци существующей системы с распределённым вычислительным кластером: Oracle PL/SQL}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Разработка вычислительных задач для Spark: Python, PySpark}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Реализация вычислительных моделей Oracle Model на Spark/Spark-SQL и Pandas/Koalas}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Проработка возможности реализации вычислительных моделей на Scala}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Создание unit-тестов, интеграционных тестов, нагрузочных тестов: pytest, Postman, Postwoman, Apache JMeter, Taurus/BlazeMeter, Selenuim}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Участие в разработке проектов на C-sharp}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Написание задач CI/CD для разрабатываемых проектов: Gradle/Groovy, LiquiBase, Jenkins Pipeline, GitLab Pipeline, скрипты на Bash, Shell, PowerShell}
-				{}	
+				{WriteMe}	
 		\end{itemize}
 	\end{itemize}
 }
 
-\cventry{2018--current}{\chiefsoftdeveloper}
+\cventry{2018--2020}{\chiefsoftdeveloper}
 {\protect\httplink[\simpl]{simpl-group.ru}}
-{Продолжение}
+{\iflanguage{russian}{Продолжение}{Continue}}
 {}
 {
 	\achievements:
@@ -380,22 +375,22 @@
 		\begin{itemize}
 			\item \iflanguage{russian}
 			{Внедрение методологии DevOps в инфраструктуру компании: Chef, Fabric}
-			{}
+			{WriteMe}
 			\item \iflanguage{russian}
 			{Внедрение методологии DevOps в инфраструктуру заказчика: Jenkins}
-			{}
+			{WriteMe}
 			\item \iflanguage{russian}
 			{Создание инфраструктуры для процесса разработки и тестирования проекта: миграция с TeamCity на Jenkins и GitLab CI/CD, миграция с Bitbucket на GitLab, развёртывание и обслуживание необходимых вычислительных кластеров Hadoop/Spark}
-			{}			
+			{WriteMe}			
 			\item \iflanguage{russian}
 			{Создание и сопровождение системы мониторинга: Influx DB, Grafana, Telegraf, Kapacitor}
-			{}
+			{WriteMe}
 			\item \iflanguage{russian}
 			{Разработка и внедрение концепции локализации вычислительных сервисов компании: Docker, Portainer, Docker Swarm}
-			{}
+			{WriteMe}
 			\item \iflanguage{russian}
 			{Проработка концепции внедрения Kubernetes в процесс разработки и тестирования программного обеспечения компании}
-			{}
+			{WriteMe}
 		\end{itemize}
 	\end{itemize}
 }
@@ -407,21 +402,22 @@
 {}
 {\iflanguage{russian}
 	{Разработка архитектуры, разработка и сопровождении автоматизированных систем федерального уровня.}
-	{}\newline{}
+	{WriteMe}
+  \newline{}
 	\achievements:
 	\begin{itemize}
-	\item \iflanguage{russian}{ИТ Архитектура}{}
+	\item \iflanguage{russian}{ИТ Архитектура}{WriteMe}
 		\begin{itemize}
-		\item \iflanguage{russian}{Разработана архитектуры отказоустойчивого кластера прикладного программного обеспечения}{}
-		\item \iflanguage{russian}{Утверждение и защита решения у заказчика, написание технической документации}{}
+		\item \iflanguage{russian}{Разработана архитектуры отказоустойчивого кластера прикладного программного обеспечения}{WriteMe}
+		\item \iflanguage{russian}{Утверждение и защита решения у заказчика, написание технической документации}{WriteMe}
 		\end{itemize}
-	\item \iflanguage{russian}{Разработка программного обеспечения}{}
+	\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
 		\begin{itemize}
 			\item \iflanguage{russian}{Ведение задач в Jira}{Planning in Jira}
 			\item \iflanguage{russian}{Oracle PL/SQL: Разработка пакетов и оптимизация SQL-запросов}
 			{Oracle PL/SQL}
-			\item \iflanguage{russian}{Oracle BI: Разработка и сопровождение форм Oracle BI}{}
-			\item \iflanguage{russian}{Участие в разработке проектов на Java}{}
+			\item \iflanguage{russian}{Oracle BI: Разработка и сопровождение форм Oracle BI}{WriteMe}
+			\item \iflanguage{russian}{Участие в разработке проектов на Java}{WriteMe}
 		\end{itemize}
 	\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
 		\begin{itemize}
@@ -446,28 +442,36 @@
 			\item \iflanguage{russian}
 				{Системное администрирование: СУБД Oracle, Linux серверов, Oracle Weblogic, Oracle BI, Oracle Access Manager, Oracle Unified Directory,
 				Corosync/Pacemaker, Apache Tomcat, Apache SOLR, Apereo CAS, КриптоПро CSP/JCP, http-сервера Apache и Nginx}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Создание платформы для поддержки процесса разработки и тестирования: LXD, OpenStack, Juju, GitLab, Jenkins, Zabbix, Oracle 12c}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Внедрение методологии DevOps в инфраструктуру заказчика: Ansible. Исследование и применение Juju, Puppet в тестовых средах}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Создание отказоустойчивых кластеров с балансировкой нагрузки для разрабатываемых Java-приложений: Corosync/Pacemaker, Nginx, Memcached, Apache Tomcat.}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Создание отказоустойчивых кластеров с балансировкой нагрузки для Oracle BI 11g: Oracle Weblogic, Oracle BI.}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Кластеризация LifeRay, внедрение распределённого кеша EhCache}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Внедрение SSO авторизации Apereo CAS для кластера LifeRay с поддержкой Kerberos для гетерогенной среды Linux/Windows}
-				{}
+				{WriteMe}
 		\end{itemize}
 	\end{itemize}
 }
+
+\newpage
+
+%
+% Историческая ретроспектива других мест работы. Основные навыки
+%
+\iflanguage{russian}{\subsection{Основные навыки}}{\subsection{Fundamental skills}}
+
 
 \cventry{2014--2017}{\leadsoftdeveloper}
 {\protect\httplink[\proitr]{proitr.ru}}
@@ -475,10 +479,11 @@
 {}
 {\iflanguage{russian}
 	{Разработка архитектуры, разработка и сопровождении автоматизированных систем регионального уровня.}
-	{}\newline{}
+	{WriteMe}
+  \newline{}
 	\achievements:
 	\begin{itemize}
-	\item \iflanguage{russian}{Разработка программного обеспечения}{}
+	\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
 		\begin{itemize}
 			\item \iflanguage{russian}{Ведение задач в Jira}{Planning in Jira}
 			\item \iflanguage{russian}
@@ -488,14 +493,14 @@
 				{Разработан унифицированный ETL-загрузчик данных пользователя: Talend Open Studio, Java}
 				{Developed ETL-loaders: Talend Open Studio, Java}
 			\item \iflanguage{russian}
-				{Разработаны специализированные ETL-загрузчики на PL/SQL и Talend Open Studio для различных источников и форматов данных: CSV, XML, Excell файлы, Интернет-сервисы (WSDL)}		
-				{Developed specialized ETL-loaders using Oracle PL/SQL and Talend Open Studio for different kind of data sources: CSV, XML, Excell files, Internet services (WSDL)  }
+				{Разработаны специализированные ETL-загрузчики на PL/SQL и Talend Open Studio для различных источников и форматов данных: CSV, XML, Excell файлы, Интернет-сервисы}
+				{Developed specialized ETL-loaders using Oracle PL/SQL and Talend Open Studio for different kind of data sources: CSV, XML, Excell files, Internet services}
 			\item \iflanguage{russian}
 				{Разработан модуль аналитической отчётности: Oracle analytic SQL, рекурсивный SQL}		
 				{Developed analytic reporting modules: Oracle analytic SQL, recursive SQL}
 			\item \iflanguage{russian}
 				{Участие в разработке проектов на PHP}
-				{}
+				{WriteMe}
 		\end{itemize}
 	\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
 		\begin{itemize}
@@ -531,23 +536,17 @@
 }
 
 
-\newpage
-
-%
-% Историческая ретроспектива других мест работы. Основные навыки
-%
-\iflanguage{russian}{\subsection{Основные навыки}}{\subsection{Fundamental skills}}
-
 \cventry{2013--2014}{\leadsoftdeveloper}
 {\protect\httplink[\prognoz]{www.prognoz.ru}}
 {\cityperm, \country}
 {}
 {\iflanguage{russian}
 	{Разработка систем банковской аналитической отчётности. Разработка ETL-загрузчиков для хранилища данных Teradata.}
-	{Develop banking analytic systems, ETL-loaders for Teradata datawarehouse.}\newline{}
+	{Develop banking analytic systems, ETL-loaders for Teradata datawarehouse.}
+  \newline{}
 	\achievements:
 	\begin{itemize}
-	\item \iflanguage{russian}{Разработка программного обеспечения}{}
+	\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
 		\begin{itemize}
 		\item \iflanguage{russian}
 			{Разработка ETL-загрузчиков для хранилища данных: Teradata SQL}
@@ -606,12 +605,12 @@
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Управление отделом администраторов баз данных: 3 человека}
-				{}
+				{WriteMe}
 			\item \iflanguage{russian}
 				{Взаимодействие с другими отделами компании}
-				{}
+				{WriteMe}
 		\end{itemize}
-	\item \iflanguage{russian}{ИТ Архитектура}{}
+	\item \iflanguage{russian}{ИТ Архитектура}{WriteMe}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Разработано централизованное хранилище: хранение статистических данных более чем 200 баз данных}
@@ -665,7 +664,7 @@
 				{Разработка и внедрение концепции децентрализованного мониторинга: Oracle dbConsole, MMONIT, Jabber/XMPP}
 				{Designed and deployed the Decentralized Monitoring System using Oracle dbConsole, MMONIT, Jabber/XMPP}
 		\end{itemize}
-	\item \iflanguage{russian}{Разработка программного обеспечения}{}
+	\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Разработан пакет для автоматизации установки ПО в базы данных}
@@ -806,7 +805,8 @@
 {\citykirov, \country}{}
 {\iflanguage{russian}
 {Разработка программируемых логических контроллеров на базе Intel 80C51 и x86. Оформление конструкторской документации. Программирование встраиваемых систем. Разработка и внедрение автоматических систем нечёткого управления (fuzzy control) объектами энергетики на промышленных предприятиях. Разработка SCADA-системы для предприятий энергетики.}
-{}\newline{}
+{WriteMe}
+\newline{}
 \achievements:
 \begin{itemize}
 	\item \iflanguage{russian}
