@@ -21,6 +21,7 @@
 % Резюме по-английски
 \usepackage[russian, english]{babel}
 
+% FIXME: проблемы с генерацией pdf на русском языке, какие-то шрифты не гененрируются или не установлены
 %\usepackage[T2A]{fontenc}
 
 % adjust the page margins
@@ -128,10 +129,23 @@
 \addtolanguagecommand{\simpl}{english}{<<PIT>> LLC}
 \addtolanguagecommand{\simpl}{russian}{ООО ПИТ, <<Группа компаний Simpl>>}
 
+\newlanguagecommand{\bial}
+\addtolanguagecommand{\bia}{english}{<<BIA Technologies>> LLC}
+\addtolanguagecommand{\bia}{russian}{ООО <<БиАйЭй Технолождиз>>}
+
 
 %
 % Должности
 %
+\newlanguagecommand{\seniorbigdata}
+\addtolanguagecommand{\seniorbigdata}{english}{Senior BigData Engineer}
+\addtolanguagecommand{\seniorbigdata}{russian}{Инженер больших данных}
+
+\newlanguagecommand{\sysarchitect}
+\addtolanguagecommand{\sysarchitect}{english}{System Architect}
+\addtolanguagecommand{\sysarchitect}{russian}{Системный архитектор}
+
+
 \newlanguagecommand{\chiefsoftdeveloper}
 \addtolanguagecommand{\chiefsoftdeveloper}{english}{Chief Software Developer}
 \addtolanguagecommand{\chiefsoftdeveloper}{russian}{Главный разработчик}
@@ -166,8 +180,8 @@
 \name{\myname}{\mysurname}
 
 \iflanguage{russian}
-{\title{ИТ Архитектура и Программирование}}
-{\title{IT Architecture and Software Engineering}}
+{\title{Системная Архитектура и Программирование}}
+{\title{System Architect and Software Engineering}}
 
 
 %
@@ -185,8 +199,8 @@
 \social[gitlab]{soliverr}
 \photo[64pt][0.4pt]{photo.jpeg}
 \iflanguage{russian}
-{\quote{Тимлид. ИТ Архитектор. Системный и прикладной программист. Инженер-исследователь. Инженер-схемотехник. Инженер DevOps. Системный администратор. Разработчик и администратор баз данных. Инженер данных}}
-{\quote{Team Leader. IT Architector. Software Developer. Research Engeener. Circuit Engineer. DevOps and System Engineer. System Adminstrator. DataBase Administrator/Developer. Data Engineer}}
+{\quote{Инженер больших данных. Системный архитектор. Инженер DevOps. Системный и прикладной программист. Инженер-исследователь. Разработчик и администратор баз данных}}
+{\quote{BigData Engineer. System Architect. DevOps. Software Developer. Research Engineer. DataBase Administrator.}}
 
 \begin{document}
 %-----       resume       ---------------------------------------------------------
@@ -211,6 +225,7 @@
 
 \iflanguage{russian}{\section{Сертификаты}}{\section{Certification}}
 
+\cvitem{Scala}{Scala-ReactiveX: Programming Reactive Systems: 2021}
 \cvitem{BigData}{Yandex Big Data Specialization:\newline{}
 	Big Data Applications: Real-Time Streaming: 2020\newline{}
 	Big Data Applications: Machine Learning at Scale: 2019\newline{}
@@ -268,6 +283,36 @@
 %
 \iflanguage{russian}{\subsection{Актуальные навыки}}{\subsection{Actual valid skills}}
 
+\cventry{2020--current}{\seniorbigdata}
+{\protect\httplink[\bia]{bia-tech.ru}}
+{\cityspb, \country}
+{}
+{\iflanguage{russian}
+	{Краткое описание не более 1--2 строк}{General description no longer than 1--2 lines.}\newline{}
+	\achievements:
+	\begin{itemize}
+		\item \iflanguage{russian}{ИТ Архитектура}{IT Architecture}
+		\begin{itemize}
+			\item \iflanguage{russian}{Один}{One}
+			\item \iflanguage{russian}{Два}{Two}
+		\end{itemize}
+		\item \iflanguage{russian}{Разработка программного обеспечения}{Software development}
+		\begin{itemize}
+			\item \iflanguage{russian}{Один}{One}
+			\item \iflanguage{russian}{Два}{Two}
+		\end{itemize}
+		\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
+		\begin{itemize}
+			\item \iflanguage{russian}{Один}{One}
+      \item \iflanguage{russian}{Два}{Two}
+		\end{itemize}
+		\item \iflanguage{russian}{DevOps и системное администрирование}{DevOps and System administration}
+		\begin{itemize}
+			\item \iflanguage{russian}{Один}{One}
+			\item \iflanguage{russian}{Два}{Two}
+		\end{itemize}
+	\end{itemize}
+}
 
 \cventry{2018--2020}{\chiefsoftdeveloper}
 {\protect\httplink[\simpl]{simpl-group.ru}}
