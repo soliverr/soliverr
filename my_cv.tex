@@ -15,6 +15,9 @@
 % character encoding
 \usepackage[utf8]{inputenc}
 
+% Для QuickStart
+\usepackage{tikz,pgfplots,pgfplotstable}
+%\pgfplotsset{width=8cm,compat=1.8}
 
 % Резюме по-русски
 %\usepackage[english, russian]{babel}
@@ -129,7 +132,7 @@
 \addtolanguagecommand{\simpl}{english}{<<PIT>> LLC}
 \addtolanguagecommand{\simpl}{russian}{ООО ПИТ, <<Группа компаний Simpl>>}
 
-\newlanguagecommand{\bial}
+\newlanguagecommand{\bia}
 \addtolanguagecommand{\bia}{english}{<<BIA Technologies>> LLC}
 \addtolanguagecommand{\bia}{russian}{ООО <<БиАйЭй Технолождиз>>}
 
@@ -181,7 +184,7 @@
 
 \iflanguage{russian}
 {\title{Системная Архитектура и Программирование}}
-{\title{System Architect and Software Engineering}}
+{\title{System Architect and Software Engineer}}
 
 
 %
@@ -206,22 +209,47 @@
 %-----       resume       ---------------------------------------------------------
 \makecvtitle
 
-%\iflanguage{russian}{\section{Обзор профессиональных навыков}}{\section{<<Quick start>> CV review}}
+\iflanguage{russian}{\section{Обзор профессиональных навыков}}{\section{<<Quick start>> CV review}}
+
+\pgfplotstableread{ % data 
+	Label                            Programming DevOps    DBA      Architect
+	{R\&D epoch (1995-2004)}         40          25        10       25
+	{SysAdmin epoch (2005 - 2007)}   15          45        20       20
+	{DataBase epoch (2007 - 2018)}   15          25        50       10
+	{BigData epoch (2019 - current)} 45          25        5        25	
+}\overviewdata
+
+\begin{center}
+\begin{tikzpicture}
+
+\begin{axis}[
+xbar stacked,   % Stacked horizontal bars
+xmin=0,         % Start x axis at 0
+ytick=data,     % Use as many tick labels as y coordinates
+xtick style={draw=none},
+ytick style={draw=none},
+%enlarge y limits=0.8,
+legend style={
+	at={(1.05,0.05)},
+	%at={(axis cs:65,0.2)},
+	anchor=south west,
+	%draw=none,
+},
+yticklabels from table={\overviewdata}{Label}  % Get the labels from the Label column of the \datatable
+]
+\addplot [fill=green!50] table [x=Programming, meta=Label,y expr=\coordindex] {\overviewdata};
+\addplot [fill=blue!20] table [x=DevOps, meta=Label,y expr=\coordindex] {\overviewdata};
+\addplot [fill=orange!50] table [x=DBA, meta=Label,y expr=\coordindex] {\overviewdata};
+\addplot [fill=red!40] table [x=Architect, meta=Label,y expr=\coordindex] {\overviewdata};
+\legend{Programming,DevOps,DBA,Architect}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
 
 %\iflanguage{russian}
 %{\includegraphics[width=0.85\linewidth]{resume_ru.png}}
 %{\includegraphics[width=0.90\linewidth]{resume_en.png}}
-
-\iflanguage{russian}{\section{Образование}}{\section{Education}}
-
-\iflanguage{russian}
-{\cventry{1995--1998}{Инженер-исследователь}{{\protect\httplink[Вятский Государственный Университет]{www.vyatsu.ru}}}{Киров}{\textit{Высшее специальное}}{Окончил аспирантуру по специальности "Системы автоматического управления"}}
-{\cventry{1995--1998}{Research Engineer}{{\protect\httplink[Vyatka State University]{www.vyatsu.ru}}}{Kirov}{\textit{Higher professional}}{Postgraduated study in "Automatic control systems"}}
-
-\iflanguage{russian}
-{\cventry{1990--1995}{Инженер}{{\protect\httplink[Вятский Государственный Университет]{www.vyatsu.ru}}}{Киров}{\textit{Высшее}}{Диплом с отличием по специальности "Инженер---электроник-конструктор-технолог электронно-вычислительных средств"}}
-{\cventry{1990--1995}{Engineer}{{\protect\httplink[Vyatka State University]{www.vyatsu.ru}}}{Kirov}{\textit{Higher}}{Diploma with honours in "Electronic-Constructor-Technologist Engineer of electronic computing systems"}}
-
 
 \iflanguage{russian}{\section{Сертификаты}}{\section{Certification}}
 
@@ -237,6 +265,17 @@
 \cvitem{Linux}{Novell Certified Linux Administrator: 2010,\newline{}Linux Professional Institute, LPI-I: 2008}{}{}
 
 \newpage
+
+\iflanguage{russian}{\section{Образование}}{\section{Education}}
+
+\iflanguage{russian}
+{\cventry{1995--1998}{Инженер-исследователь}{{\protect\httplink[Вятский Государственный Университет]{www.vyatsu.ru}}}{Киров}{\textit{Высшее специальное}}{Окончил аспирантуру по специальности "Системы автоматического управления"}}
+{\cventry{1995--1998}{Research Engineer}{{\protect\httplink[Vyatka State University]{www.vyatsu.ru}}}{Kirov}{\textit{Higher professional}}{Postgraduated study in "Automatic control systems"}}
+
+\iflanguage{russian}
+{\cventry{1990--1995}{Инженер}{{\protect\httplink[Вятский Государственный Университет]{www.vyatsu.ru}}}{Киров}{\textit{Высшее}}{Диплом с отличием по специальности "Инженер---электроник-конструктор-технолог электронно-вычислительных средств"}}
+{\cventry{1990--1995}{Engineer}{{\protect\httplink[Vyatka State University]{www.vyatsu.ru}}}{Kirov}{\textit{Higher}}{Diploma with honors in "Electronic-Constructor-Technologist Engineer of electronic computing systems"}}
+
 
 \iflanguage{russian}{\section{Опыт работы}}{\section{Experience}}
 
@@ -288,28 +327,98 @@
 {\cityspb, \country}
 {}
 {\iflanguage{russian}
-	{Краткое описание не более 1--2 строк}{General description no longer than 1--2 lines.}\newline{}
+	{Системная архитектура, внедрение и сопровождение сервисов в кластере на базе Hadoop. Разработка прикладного программного обеспечения для вычислительного кластера с использованием Spark, Kafka и др.}
+	{Design, deploy and maintain on-premise Hadoop based cluster. Development business software
+	applications used Spark, Kafka and more.}
+	\newline{}
 	\achievements:
 	\begin{itemize}
+		\item \iflanguage{russian}{Техническое лидерство}{Technical Leader}
+		\begin{itemize}
+			\item \iflanguage{russian}
+				{Популяризация широкого спектра отрытых технологий в компании: проведение семинаров и обучающих курсов}
+				{Popularization of a wide range of open-source technologies in the company: holding seminars and training courses }
+			\item \iflanguage{russian}
+				{Ведение дипломных проектов студентов}
+				{Conducting graduation projects of students}
+			\item \iflanguage{russian}
+				{Ведение технической документации}
+				{Writing wikies and technical documentation: Sphinx-doc}
+		\end{itemize}
 		\item \iflanguage{russian}{ИТ Архитектура}{IT Architecture}
 		\begin{itemize}
-			\item \iflanguage{russian}{Один}{One}
-			\item \iflanguage{russian}{Два}{Two}
+			\item \iflanguage{russian}
+				{Разработка системной архитектуры подсистем озера данных на базе Hadoop}
+				{System architecture desing of Hadoop based DataLake}
+			\item \iflanguage{russian}
+				{Разработка механизма миграции озера данных в дом данных}
+				{Migration data storage paradigm: from DataWareHouse and DataLake to LakeHouse }
+			\item \iflanguage{russian}
+				{Разработка и внедрение архитектуры потоковой обработки данных с использованием Kafka, Debezium, Spark Structured Streaming, Delta-tables}
+				{Desing and implementation of streaming processing subsystem: Kafka, Debezium, Spark Structured Streaming, Delta-tables}
+			\item \iflanguage{russian}
+				{Разработка и внедренеие архитекутуры обработки данных в кластере Hadoop: Airflow, Celery, DASK}
+				{Desing and implementation of a data ingestion subsystem: Airflow, Celery, DASK}
+			\item \iflanguage{russian}
+				{Разработка архитектуры интеграции Hadoop и Kubernetes}
+				{Hadoop and Kubernetes integration}
+			\item \iflanguage{russian}
+				{Разработка архитектуры DataGovernance и DataLineage: LinkedIn DataHub, Atlas}
+				{Desing and implementation of a data governance and data lineage subsystem: LinkedIn DataHub, Apache Atlas}
+			\item \iflanguage{russian}
+				{Разработка архитектуры подсистемы качества данных: GreatExpectaion, Apache Griffin}
+				{Design and implementation of a data quality and data assurance subsystem: Great Expectations, Apache Griffin}
+			\item \iflanguage{russian}
+				{Разработка архитектуры виртуализации данных и интеграции озера данных с существующим хранилищем данных, миграция с Hive на Trino}
+				{Desing and implementation of data virtualization subsystem: Trino; DWH intergation: PolyBase}
+			\item \iflanguage{russian}
+				{Разработка и внедрение архитектуры оркестрации данных с использованием Alluxio}
+				{Desing of data orchestration subsystem: Alluxio }
 		\end{itemize}
 		\item \iflanguage{russian}{Разработка программного обеспечения}{Software development}
 		\begin{itemize}
-			\item \iflanguage{russian}{Один}{One}
-			\item \iflanguage{russian}{Два}{Two}
+			\item \iflanguage{russian}
+				{Разработка коннекторов Kafka потоковой обработки на Scala и Python}
+				{Developing of Kafka connectors on Scala and Python}
+			\item \iflanguage{russian}
+				{Реализация табличной модели хранения на базе Delta-таблиц (delta.io)}
+				{Developing of streaming storage table model based on Delta-tables (delta.io) on Scala}
+			\item \iflanguage{russian}
+				{Разработка модулей построения DAG для Airflow}
+				{Developing DAG factory and DAGs for Airflow}
+			\item \iflanguage{russian}
+				{Разработка прототипов моделей данных для обработки данных в реальном времени на Python с использованием Pandas, DASK, pySpark}
+				{Developing buisiness models for realtime data processing using Pandas, DASK, pySpark}
 		\end{itemize}
-		\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
+		\item \iflanguage{russian}{Администрирование баз данных}{Data Bases}
 		\begin{itemize}
-			\item \iflanguage{russian}{Один}{One}
-      \item \iflanguage{russian}{Два}{Two}
+			\item \iflanguage{russian}
+				{Участие в проектах для MS SQL Server}
+				{Participation in projects for MS SQL Server}
+      		\item \iflanguage{russian}
+      			{Внедрение и сопровождение СУБД PostgreSQL в кластерном режиме, интеграция с Hadoop с использованием KafkaConnect и Debezium}
+      			{Integration cluster PostgreSQL with Hadoop: Patroni}
 		\end{itemize}
 		\item \iflanguage{russian}{DevOps и системное администрирование}{DevOps and System administration}
 		\begin{itemize}
-			\item \iflanguage{russian}{Один}{One}
-			\item \iflanguage{russian}{Два}{Two}
+			\item \iflanguage{russian}
+				{Сопровождение собственного кластера Hadoop: распределение ресурсов, организация отказоустойчивости, организация резервного копирования}
+				{Maintain on-premise Hadoop clusters}
+			\item \iflanguage{russian}
+				{Внедренеие системы сопровождения кластера Hadoop с использование Ansible и GitLab}
+				{Implement DevOps techniques to support Hadoop clusters: Ansible, GitLab}
+			\item \iflanguage{russian}
+				{Создание собственных ролей Ansible для сопровождения кластера Hadoop}
+				{Developing own Annible roles, Ansible and GitLab integration}
+			\item \iflanguage{russian}
+				{Миграция производственного кластера с Hortownworks Data Platform на ванильные дистрибутивы кластерного ПО, проработка методологии обновления калстерного ПО}
+				{Migration of production Hadoop cluster from Hortonworks Data Platform to vanilla Hadoop}
+			\item \iflanguage{russian}
+				{Интеграция Hadoop и Docker Swarm с использованием Portainer}
+				{Docker Swarm and Hadoop integration: Portainer}
+			\item \iflanguage{russian}
+				{Внедрение системы мониторинга: с использованием Prometheus/Grafana/AlertManager, ElasticSearch/Filebeat/Kibana}
+				{Implementation of monitoring system for Kafka and Hadoop: Prometheeus, Grafana, AlertManager, ElasticSearch, Filebeat, Kibana}
 		\end{itemize}
 	\end{itemize}
 }
@@ -319,68 +428,73 @@
 {\cityspb, \country}
 {}
 {\iflanguage{russian}
-	{Управление процессом разработки, разработка архитектуры, разработка прикладного программного обеспечения, внедрение программно-аппаратного комплекса разработанного решения для проекта в нефтегазовой отрасли РФ.}
-	{WriteMe}
+	{Управление процессом разработки, разработка архитектуры, разработка прикладного программного обеспечения, внедрение программно-аппаратного комплекса разработанного решения для проекта в нефтегазовой отрасли}
+	{Process management, architecture design, software development in one gas and oil industry project}
 	\newline{}
 	\achievements:
 	\begin{itemize}
-		\item \iflanguage{russian}{Тимлид}{Team Leader}
+		\item \iflanguage{russian}{Тимлид}{Technical Leader}
 		\begin{itemize}
-			\item \iflanguage{russian}{Управление и организация работы команды разработчиков: 5-12 человек}{WriteMe}
-			\item \iflanguage{russian}{Выбор системы ведения проекта: Jira, Trello, Asana, Ora.pm, Redmine}{WriteMe}
-			\item \iflanguage{russian}{Внедрение Scrumban в управление проектом: Ora.pm}{WriteMe}
-			\item \iflanguage{russian}{Внедрение Scrum Poker в планирование спринтов}{WriteMe}
+			\item \iflanguage{russian}
+				{Управление и организация работы команды разработчиков: 5-12 человек}
+				{Technical leading and small team management: 5-12 developers}
+			\item \iflanguage{russian}
+				{Выбор системы ведения проекта: Jira, Trello, Ora.pm}
+				{Project management with Jira, Trello, Ora.pm}
+			\item \iflanguage{russian}
+				{Внедрение Scrumban в управление проектом: Ora.pm}
+				{Scumban implementation}
+			\item \iflanguage{russian}
+				{Внедрение Scrum Poker в планирование спринтов}
+				{Scrum Pocker implementation}
 			\item \iflanguage{russian}
 				{Поддержание духа startup в команде разработчиков}
-				{WriteMe}
+				{Endorse team startup spirit}
 			\item \iflanguage{russian}
 				{Внедрение системы планирования спринтов на основе общей оценки скорости работы команды и индивидуальной скорости работы разработчика. Индекс активности разработчика. Автоматизация планирования с использованием MSProject, GanttProject, TaskJuggler}
-				{WriteMe}
+				{Project planning: MSProject, GanttProject, TaskJuggler}
 			\item \iflanguage{russian}
 				{Внедрение методологии управления релизами, организация выходного тестирования поставляемых заказчику решений в среде UAT}
-				{WriteMe}
+				{Implement test-based release management aproach}
 		\end{itemize}
-		\item \iflanguage{russian}{ИТ Архитектура}{WriteMe}
+		\item \iflanguage{russian}{ИТ Архитектура}{IT Architecture}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Разработана архитектура вычислительного кластера на базе стека технологий BigData: Hadoop HDFS/YARN, ZooKeeper, Spark, Hive, Kyuubi Thrift JDBS/ODBC Server, Alluxio}
-				{WriteMe}
+				{Desing and implementation of Hadoop-based calculation cluster: Hadoop HDFS/YARN, ZooKeeper, Spark, Hive, Kyuubi Thrift JDBS/ODBC Server, Alluxio}
 			\item \iflanguage{russian}
 				{Проработка целевой архитектуры распределённой вычислительной системы с использованием различных стеков технологий}
-				{WriteMe}
+				{Architecture desing for a distributed calculation subsystem to migrate from Oracle Model}
 			\item \iflanguage{russian}
 				{Проработка архитектуры прикладного программного обеспечения и взаимодействия компонент разрабатываемого решения}
-				{WriteMe}
+				{System architecture desing for all software components of the projects}
 			\item \iflanguage{russian}
 				{Участие в технических совещаниях с заказчиком, участие в защите решения у заказчика, написание технической документации}
-				{WriteMe}
+				{Participation in technical meetings with customers, writing technical documentation}
 		\end{itemize}
-		\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
+		\item \iflanguage{russian}{Разработка программного обеспечения}{Software Development}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Ведение задач в Ora.pm. Миграция системы планирования из Jira}
 				{Planning in Jira, modev to Ora.pm}
 			\item \iflanguage{russian}
 				{Разработка моделей данных и PL/SQL кода для интеграци существующей системы с распределённым вычислительным кластером: Oracle PL/SQL}
-				{WriteMe}
+				{Writing Oracle PL/SQL packages}
 			\item \iflanguage{russian}
 				{Разработка вычислительных задач для Spark: Python, PySpark}
-				{WriteMe}
+				{Reengineering Oracle PL/SQL packages for a Spark standalone cluster}
 			\item \iflanguage{russian}
 				{Реализация вычислительных моделей Oracle Model на Spark/Spark-SQL и Pandas/Koalas}
-				{WriteMe}
-			\item \iflanguage{russian}
-				{Проработка возможности реализации вычислительных моделей на Scala}
-				{WriteMe}
+				{Migration Oracle Model code to PySpark/Spark-SQL and Pandas}
 			\item \iflanguage{russian}
 				{Создание unit-тестов, интеграционных тестов, нагрузочных тестов: pytest, Postman, Postwoman, Apache JMeter, Taurus/BlazeMeter, Selenuim}
-				{WriteMe}
+				{Implement testing environments: pytest, Postman, Postwoman, Apache JMeter, Taurus/BlazeMeter, Selenuim}
 			\item \iflanguage{russian}
 				{Участие в разработке проектов на C-sharp}
-				{WriteMe}
+				{Participation in the projects on C-sharp}
 			\item \iflanguage{russian}
 				{Написание задач CI/CD для разрабатываемых проектов: Gradle/Groovy, LiquiBase, Jenkins Pipeline, GitLab Pipeline, скрипты на Bash, Shell, PowerShell}
-				{WriteMe}	
+				{Implementation of DevOps techniques: Gradle/Groovy, LiquiBase, Jenkins Pipeline, GitLab Pipeline, Bash, Shell, PowerShell scripts}	
 		\end{itemize}
 	\end{itemize}
 }
@@ -419,23 +533,20 @@
 		\item \iflanguage{russian}{DevOps и системное администрирование}{DevOps and System administration}
 		\begin{itemize}
 			\item \iflanguage{russian}
-			{Внедрение методологии DevOps в инфраструктуру компании: Chef, Fabric}
-			{WriteMe}
+				{Внедрение методологии DevOps в инфраструктуру компании: Chef, Fabric}
+				{Implement Infrastructure-as-Code paradigm: Chef}
 			\item \iflanguage{russian}
-			{Внедрение методологии DevOps в инфраструктуру заказчика: Jenkins}
-			{WriteMe}
+				{Внедрение методологии DevOps в инфраструктуру заказчика: Jenkins}
+				{Implement CI/CD: Jenkins, GitLab}
 			\item \iflanguage{russian}
-			{Создание инфраструктуры для процесса разработки и тестирования проекта: миграция с TeamCity на Jenkins и GitLab CI/CD, миграция с Bitbucket на GitLab, развёртывание и обслуживание необходимых вычислительных кластеров Hadoop/Spark}
-			{WriteMe}			
+				{Создание инфраструктуры для процесса разработки и тестирования проекта: миграция с TeamCity на Jenkins и GitLab CI/CD, миграция с Bitbucket на GitLab, развёртывание и обслуживание необходимых вычислительных кластеров Hadoop/Spark}
+				{Migration development environment from Bitbucket, TeamCity to GitLab, Jenkins}			
 			\item \iflanguage{russian}
-			{Создание и сопровождение системы мониторинга: Influx DB, Grafana, Telegraf, Kapacitor}
-			{WriteMe}
+				{Создание и сопровождение системы мониторинга: Influx DB, Grafana, Telegraf, Kapacitor}
+				{Implement monitoring system: Influx DB, Grafana, Telegraf, Kapacitor}
 			\item \iflanguage{russian}
-			{Разработка и внедрение концепции локализации вычислительных сервисов компании: Docker, Portainer, Docker Swarm}
-			{WriteMe}
-			\item \iflanguage{russian}
-			{Проработка концепции внедрения Kubernetes в процесс разработки и тестирования программного обеспечения компании}
-			{WriteMe}
+				{Разработка и внедрение концепции локализации вычислительных сервисов компании: Docker, Portainer, Docker Swarm}
+				{Dockerize company's IT infrastructure: Docker Swarm, Portainer}
 		\end{itemize}
 	\end{itemize}
 }
@@ -446,23 +557,32 @@
 {\citymoscow, \country}
 {}
 {\iflanguage{russian}
-	{Разработка архитектуры, разработка и сопровождении автоматизированных систем федерального уровня.}
-	{WriteMe}
+	{Разработка архитектуры, разработка и сопровождении автоматизированных систем.}
+	{Architecture design, software development and maintanance of a large information systems.}
   \newline{}
 	\achievements:
 	\begin{itemize}
-	\item \iflanguage{russian}{ИТ Архитектура}{WriteMe}
+	\item \iflanguage{russian}{ИТ Архитектура}{IT Architecture}
 		\begin{itemize}
-		\item \iflanguage{russian}{Разработана архитектуры отказоустойчивого кластера прикладного программного обеспечения}{WriteMe}
-		\item \iflanguage{russian}{Утверждение и защита решения у заказчика, написание технической документации}{WriteMe}
+		\item \iflanguage{russian}
+			{Разработана архитектуры отказоустойчивого кластера прикладного программного обеспечения}
+			{Desing and implementation of a fault-tolerant application cluster}
+		\item \iflanguage{russian}
+			{Утверждение и защита решения у заказчика, написание технической документации}
+			{Participation in technical meetings with customers, writing technical documentation}
 		\end{itemize}
-	\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
+	\item \iflanguage{russian}{Разработка программного обеспечения}{Software Development}
 		\begin{itemize}
 			\item \iflanguage{russian}{Ведение задач в Jira}{Planning in Jira}
-			\item \iflanguage{russian}{Oracle PL/SQL: Разработка пакетов и оптимизация SQL-запросов}
-			{Oracle PL/SQL}
-			\item \iflanguage{russian}{Oracle BI: Разработка и сопровождение форм Oracle BI}{WriteMe}
-			\item \iflanguage{russian}{Участие в разработке проектов на Java}{WriteMe}
+			\item \iflanguage{russian}
+				{Oracle PL/SQL: Разработка пакетов и оптимизация SQL-запросов}
+				{Developing Oracle PL/SQL packages}
+			\item \iflanguage{russian}
+				{Oracle BI: Разработка и сопровождение форм Oracle BI}
+				{Developing Oracle BI forms}
+			\item \iflanguage{russian}
+				{Участие в разработке проектов на Java}
+				{Participation in the projects on Java}
 		\end{itemize}
 	\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
 		\begin{itemize}
@@ -477,7 +597,7 @@
 				{Installed and maintained database monitoring system: Oracle Enterprise Manager}
 			\item \iflanguage{russian}
 				{Оптимизация SQL-запросов}
-				{Optimized SQL-query}
+				{SQL-query optimization}
 			\item \iflanguage{russian}
 				{Анализ производительности и настройка Linux-серверов для СУБД Oracle}
 				{Analyzed and tuned Linux servers perfomance for Oracle RDBMS}
@@ -487,25 +607,25 @@
 			\item \iflanguage{russian}
 				{Системное администрирование: СУБД Oracle, Linux серверов, Oracle Weblogic, Oracle BI, Oracle Access Manager, Oracle Unified Directory,
 				Corosync/Pacemaker, Apache Tomcat, Apache SOLR, Apereo CAS, КриптоПро CSP/JCP, http-сервера Apache и Nginx}
-				{WriteMe}
+				{Maintain a broad portfolio of services: Oracle RDBMS, Linux servers, Oracle Weblogic, Oracle BI, Oracle Access Manager, Oracle Unified Directory, Corosync/Pacemaker, Apache Tomcat, Apache SOLR, Apereo CAS, Apache HTTP server, Nginx}
 			\item \iflanguage{russian}
 				{Создание платформы для поддержки процесса разработки и тестирования: LXD, OpenStack, Juju, GitLab, Jenkins, Zabbix, Oracle 12c}
-				{WriteMe}
+				{Implement testing and monitoring environment: LXD, OpenStack, Juju, GitLab, Jenkins, Zabbix}
 			\item \iflanguage{russian}
 				{Внедрение методологии DevOps в инфраструктуру заказчика: Ansible. Исследование и применение Juju, Puppet в тестовых средах}
-				{WriteMe}
+				{Endorse of DevOps techiques: Ansible, Juju, Puppet}
 			\item \iflanguage{russian}
-				{Создание отказоустойчивых кластеров с балансировкой нагрузки для разрабатываемых Java-приложений: Corosync/Pacemaker, Nginx, Memcached, Apache Tomcat.}
-				{WriteMe}
+				{Создание отказоустойчивых кластеров с балансировкой нагрузки для разрабатываемых Java-приложений: Corosync/Pacemaker, Nginx, Memcached, Apache Tomcat}
+				{Desing and implementation of high loaded fault-tolerant clusters for business Java application: Corosync/Pacemaker, Nginx, Memcached, Apache Tomcat}
 			\item \iflanguage{russian}
 				{Создание отказоустойчивых кластеров с балансировкой нагрузки для Oracle BI 11g: Oracle Weblogic, Oracle BI.}
-				{WriteMe}
+				{Building failover load balancing cluster for Oracle BI: Oracle Weblogic}
 			\item \iflanguage{russian}
 				{Кластеризация LifeRay, внедрение распределённого кеша EhCache}
-				{WriteMe}
+				{Implement LifeRay clusterization with EhCache distibuted cache.}
 			\item \iflanguage{russian}
 				{Внедрение SSO авторизации Apereo CAS для кластера LifeRay с поддержкой Kerberos для гетерогенной среды Linux/Windows}
-				{WriteMe}
+				{Implement LifeRay cluster SSO using Apereo CAS with Kerberos for Windows/Linux workstations}
 		\end{itemize}
 	\end{itemize}
 }
@@ -524,7 +644,7 @@
 {}
 {\iflanguage{russian}
 	{Разработка архитектуры, разработка и сопровождении автоматизированных систем регионального уровня.}
-	{WriteMe}
+	{Architecture design, software development and maintanance of a middle level information systems}
   \newline{}
 	\achievements:
 	\begin{itemize}
@@ -545,7 +665,7 @@
 				{Developed analytic reporting modules: Oracle analytic SQL, recursive SQL}
 			\item \iflanguage{russian}
 				{Участие в разработке проектов на PHP}
-				{WriteMe}
+				{Participation in the projects on PHP}
 		\end{itemize}
 	\item \iflanguage{russian}{Администрирование баз данных Oracle}{Oracle DBA}
 		\begin{itemize}
@@ -650,12 +770,12 @@
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Управление отделом администраторов баз данных: 3 человека}
-				{WriteMe}
+				{Team management: about 3 DBAs}
 			\item \iflanguage{russian}
 				{Взаимодействие с другими отделами компании}
-				{WriteMe}
+				{Interaction with other company's departments}
 		\end{itemize}
-	\item \iflanguage{russian}{ИТ Архитектура}{WriteMe}
+	\item \iflanguage{russian}{ИТ Архитектура}{IT Architecture}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Разработано централизованное хранилище: хранение статистических данных более чем 200 баз данных}
@@ -709,7 +829,7 @@
 				{Разработка и внедрение концепции децентрализованного мониторинга: Oracle dbConsole, MMONIT, Jabber/XMPP}
 				{Designed and deployed the Decentralized Monitoring System using Oracle dbConsole, MMONIT, Jabber/XMPP}
 		\end{itemize}
-	\item \iflanguage{russian}{Разработка программного обеспечения}{WriteMe}
+	\item \iflanguage{russian}{Разработка программного обеспечения}{Software Development}
 		\begin{itemize}
 			\item \iflanguage{russian}
 				{Разработан пакет для автоматизации установки ПО в базы данных}
@@ -905,7 +1025,7 @@
 
 \iflanguage{russian}
 {\cvitemwithcomment{Английский}{Средний}{Хорошее владение письменным английским в технической сфере, небольшая практика разговорного английского}}
-{\cvitemwithcomment{English}{Intermediate}{Good reading and writing in English in the scopes of activities, a little experience of talking English}}
+{\cvitemwithcomment{English}{Intermediate}{Good reading and writing in English in the scopes of activities, a few practice in spoken English}}
 \iflanguage{russian}
 {\cvitemwithcomment{Немецкий}{Базовый}{Базовый уровень изучения немецкого с целью чтения технической документации}}
 {\cvitemwithcomment{German}{Basic}{Basic level of reading in German}}
@@ -916,7 +1036,7 @@
 \cvdoubleitem{\iflanguage{russian}{Разработка ПО}{Software Dev}}{C, Tcl, Perl, Python, Shell, CVS, Git, Subversion, Bazaar, Automake, Autoconf, Gradle, Liquibase, (C-sharp, PHP, Java, Scala)}{\iflanguage{russian}{ОС}{OS}}{Windows Server, Linux, FreeBSD, Solaris}
 \cvdoubleitem{\iflanguage{russian}{СУБД}{RDBMS}}{Oracle, Teradata, PostgreSQL, MySQL, Interbase,  FireBird}{\iflanguage{russian}{DevOps}{DevOps}}{OpenStack, Juju, Foreman, Chef, Puppet, Ansible, Fabric, Active Directory, eDirectory}
 \cvitem{Oracle Services}{Oracle BI 11g, Oracle Access Manager, Oracle Unified Directory, Oracle Internet Directory, Oracle Weblogic}
-\cvitem{BigData}{Hadoop HDFS, YARN, Spark, pySpark, Spark-SQL, Hive, LLAP, ZooKeeper, Kafka, Ambari, HBase, Sqoop, Pandas}
+\cvitem{BigData}{Hadoop HDFS, YARN, Spark, pySpark, Spark-SQL, Hive, LLAP, ZooKeeper, Kafka, Ambari, HBase, Sqoop, Pandas, Kyuubi, Atlas, Trino, Kudo, Airflow, GreatExpectations, Apache Griffin, Debezium, Kubernetes, DASK, Celery, Redis}
 
 
 \iflanguage{russian}
@@ -938,8 +1058,8 @@
 }
 \cvlistitem{
 \iflanguage{russian}
-{Предпочитаемый редактор: Vim}
-{Preferred text editor: Vim}
+{Предпочитаемый редактор: Vim, VisualStudio Code}
+{Preferred text editor: Vim, VisualStudio Code}
 }
 \cvlistitem{
 \iflanguage{russian}
@@ -948,13 +1068,13 @@
 }
 \cvlistitem{
 \iflanguage{russian}
-{Системный анализ, системный подход к решению проблем}
-{System approach to problem solving}
+{Системный анализ, системный подход к решению проблем. Критический склад ума, умение решать сложные проблемы}
+{System approach to problem solving,Critical thinker and problem-solving skills}
 }
 \cvlistitem{
 \iflanguage{russian}
-{Самообучаемость, самообразование}
-{Educability, trainability}
+{Самообучаемость, желание делиться знаниями, ответсвенность}
+{Educability. Self-directed and self-motivated with the ability to take charge or play a supporting role}
 }
 
 \end{document}
