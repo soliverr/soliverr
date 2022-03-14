@@ -4,7 +4,7 @@
 
 
 
-\documentclass[11pt,a4paper,sans]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
+\documentclass[11pt,a4paper,sans, russian]{moderncv}        % possible options include font size ('10pt', '11pt' and '12pt'), paper size ('a4paper', 'letterpaper', 'a5paper', 'legalpaper', 'executivepaper' and 'landscape') and font family ('sans' and 'roman')
 
 % moderncv themes
 \moderncvstyle{casual}                             % style options are 'casual' (default), 'classic', 'banking', 'oldstyle' and 'fancy'
@@ -20,12 +20,21 @@
 %\pgfplotsset{width=8cm,compat=1.8}
 
 % Резюме по-русски
-%\usepackage[english, russian]{babel}
+%\usepackage[english, main=russian]{babel}
 % Резюме по-английски
-\usepackage[russian, english]{babel}
+\usepackage[russian, main=english]{babel}
 
-% FIXME: проблемы с генерацией pdf на русском языке, какие-то шрифты не гененрируются или не установлены
-%\usepackage[T2A]{fontenc}
+% FIXME: проблемы с генерацией pdf на русском языке, какой-то шрифты не установлен и при использовании кодировки T2A не может маштабироваться
+\usepackage[T2A, T1]{fontenc}
+%\usepackage[russian,main=english]{babel}    
+%\usepackage[main=russian,english]{babel}    
+%\usepackage{substitutefont}
+%\substitutefont{T2A}{\rmdefault}{Tempora-TLF}
+%
+%\renewcommand{\rmdefault}{cmr} % Шрифт с засечками
+%\renewcommand{\sfdefault}{cmss} % Шрифт без засечек
+%\renewcommand{\ttdefault}{cmtt} % Моноширинный шрифт
+
 
 % adjust the page margins
 \usepackage[scale=0.75]{geometry}
